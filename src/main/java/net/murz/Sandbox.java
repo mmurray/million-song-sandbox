@@ -10,13 +10,14 @@ import ncsa.hdf.object.h5.*;
 
 class Sandbox {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
       System.out.println("###########################");
 
       File folder = new File("data/MillionSongSubset/data/A/A/A");
       File[] files = folder.listFiles();
       for (File f : files) {
-        H5File h5File = new H5File(f.getName());
+        H5File h5 = HDF5Util.hdf5_open_readonly(f.getPath());
+        System.out.println("artist name: " + HDF5Util.get_artist_name(h5));
       }
 
 
